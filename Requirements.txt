@@ -1,10 +1,4 @@
 shiny
-shinyjs
-htmltools
-jsonlite
-magrittr
-dplyr
-tidyr
-purrr
-stringr
-audio
+bslib
+png
+grid
