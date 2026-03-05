@@ -156,47 +156,48 @@ show_level_complete <- function(level) {
 
 # ------------------------------
 # UI
-# ------------------------------
 ui <- page_fillable(
   theme = bs_theme(bootswatch = "minty"),
   
-  
   # Quiet background music
   tags$audio(
+    id = "bgm",
     src = "background.mp3",
     type = "audio/mp3",
-    autoplay = NA,
-    loop = NA,
-    controls = NA,
-    style = "display:none;",
-    volume = 0.15   # nice and quiet
+    autoplay = TRUE,
+    loop = TRUE
   ),
   
   tags$script(HTML("
-  // Start muted to satisfy autoplay rules
-  document.addEventListener('DOMContentLoaded', function() {
-    var audio = document.getElementById('bgm');
-    if (audio) {
-      audio.muted = true;
-      audio.volume = 0.15;
-    }
-  });
+    // Start muted to satisfy autoplay rules
+    document.addEventListener('DOMContentLoaded', function() {
+      var audio = document.getElementById('bgm');
+      if (audio) {
+        audio.muted = true;
+        audio.volume = 0.15;
+      }
+    });
 
-  // Unmute on first user interaction
-  document.addEventListener('click', function() {
-    var audio = document.getElementById('bgm');
-    if (audio) {
-      audio.muted = false;
-    }
-  }, { once: true });
-"))
+    // Unmute on first user interaction
+    document.addEventListener('click', function() {
+      var audio = document.getElementById('bgm');
+      if (audio) {
+        audio.muted = false;
+      }
+    }, { once: true });
+  ")),  
   
   tags$head(
     tags$link(
       href = "https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap",
       rel = "stylesheet"
     )
-  ),
+  ),      
+  
+  tags$script(src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"),
+  
+  
+ 
   tags$script(src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"),
   
   # Audio
