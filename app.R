@@ -172,6 +172,24 @@ ui <- page_fillable(
     volume = 0.15   # nice and quiet
   ),
   
+  tags$script(HTML("
+  // Start muted to satisfy autoplay rules
+  document.addEventListener('DOMContentLoaded', function() {
+    var audio = document.getElementById('bgm');
+    if (audio) {
+      audio.muted = true;
+      audio.volume = 0.15;
+    }
+  });
+
+  // Unmute on first user interaction
+  document.addEventListener('click', function() {
+    var audio = document.getElementById('bgm');
+    if (audio) {
+      audio.muted = false;
+    }
+  }, { once: true });
+"))
   
   tags$head(
     tags$link(
